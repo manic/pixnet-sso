@@ -22,7 +22,7 @@ module PixnetSso
       migration_template 'migration.rb', "db/migrate/create_#{user_model.tableize}.rb"
 
 
-      if openid_enabled.downcase == 'y'
+      if openid_enabled?
         template 'openid_associate.rb', "app/models/#{openid_model.singularize.underscore}.rb"
         migration_template 'migration_openid.rb', "db/migrate/create_#{openid_model.tableize}.rb"
       end
@@ -35,11 +35,16 @@ module PixnetSso
     end
 
     def openid_model
+      return '' unless openid_enabled?
       @openid_model ||= ask('What is your openid model name?').classify
     end
 
     def openid_enabled
       @openid_enabled ||= ask("Would you want to enable OpenID ?(y/N)")
+    end
+
+    def openid_enabled?
+      openid_enabled.downcase == 'y'
     end
   end
 end
