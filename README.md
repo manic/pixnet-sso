@@ -27,6 +27,10 @@ Create a `config/initializers/pixnet-sso.rb` that looks like:
 
 And set your PIXNET SSO key pair to your ENV.
 
+## LOAD SCIRPTS IN YOUR LAYOUT:
+
+Add `<%= pixnet_sso_scripts %>` in your `layout/application.html.erb` to enable PIXNET SSO.
+
 ## LICENSE:
 
 Apache License 2.0
