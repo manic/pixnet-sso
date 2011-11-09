@@ -15,7 +15,7 @@ module Pixnet
       end
 
       def login_from_session
-        self.current_user = User.find(session[:user_id]) if session[:user_id]
+        self.current_user = Pixnet::SSO::Config.user_klass.find(session[:user_id]) if session[:user_id]
       end
 
       def login_required
@@ -26,7 +26,6 @@ module Pixnet
           return false
         end
       end
-
 
       def self.included(base)
         base.helper_method :logged_in?
