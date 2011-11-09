@@ -1,5 +1,6 @@
 # encoding: utf-8
 require 'openssl'
+require 'open-uri'
 
 module Pixnet
   module SSO
