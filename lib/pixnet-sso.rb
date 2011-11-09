@@ -9,6 +9,7 @@ module Pixnet
   module SSO
 
     autoload :ControllerMethods, 'pixnet-sso/controller_methods'
+    autoload :OpenidControllerMethods, 'pixnet-sso/openid_controller_methods'
 
     def self.config
       yield Pixnet::SSO::Config

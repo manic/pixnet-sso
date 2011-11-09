@@ -8,7 +8,7 @@ class PixauthController < ApplicationController
 
     if info["info"]
       self.current_user = sso.get_user(info["msg"]["user_name"])
-      #self.current_openid_user = get_openid_user(info)
+      self.current_openid_user = sso.get_openid_user(info) if Pixnet::SSO::Config.openid_enabled
 
       redirect_to done_site
     else

@@ -27,6 +27,17 @@ module Pixnet
         end
       end
 
+      def get_openid_user(info)
+        return false if info['msg']['openid'].blank?
+        openid_user = Pixnet::SSO::Config.openid_klass.find_or_initialize_by_openid(info['msg']['openid'])
+        if openid_user.new_record?
+          openid_user.provider = info['msg']['openid_type']
+          openid_user.extra = info['msg']['openid_data'].to_json
+          openid_user.save
+        end
+        return openid_user
+      end
+
       def show_error
         return @error_message
       end
