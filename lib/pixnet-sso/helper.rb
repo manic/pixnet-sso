@@ -1,4 +1,7 @@
 # encoding: utf-8
+
+require 'uuid'
+
 module Pixnet
   module SSO
     module Helper
@@ -7,6 +10,7 @@ module Pixnet
         unique = Zlib.crc32(UUID.generate).to_s
         user_name = current_user.blank? ? "" : current_user.login
         login_name = "#{user_name}.pixnet.net#{unique}#{now}"
+
         if Pixnet::SSO::Config.openid_enabled and current_openid_user
           login_name = "#{login_name}#{current_openid_user.openid}"
         end
