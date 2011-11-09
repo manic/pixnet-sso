@@ -15,7 +15,9 @@ Clients for PIXNET SSO
 
     gem install pixnet-sso 
 
-## CONFIG:
+## ENABLE PIXNET SSO:
+
+### CONFIG:
 
 Create a `config/initializers/pixnet-sso.rb` that looks like:
 
@@ -23,13 +25,23 @@ Create a `config/initializers/pixnet-sso.rb` that looks like:
         config.user_model = 'User'
         config.sso_key = ENV['SSO_KEY']
         config.sso_secret = ENV['SSO_SECRET']
+        # option: openid
+        config.openid_model = 'OpenidAssociate'
+        config.openid_enabled = true
     end
 
 And set your PIXNET SSO key pair to your ENV.
 
-## LOAD SCIRPTS IN YOUR LAYOUT:
+### LOAD SCIRPTS IN YOUR LAYOUT:
 
 Add `<%= pixnet_sso_scripts %>` in your `layout/application.html.erb` to enable PIXNET SSO.
+
+### ADD CONTROLLER METHODS IN YOUR APPLCATION
+
+Add code in your `app/controllers/application_controller`:
+
+include Pixnet::SSO::ControllerMethods
+include Pixnet::SSO::OpenidControllerMethods
 
 ## LICENSE:
 
