@@ -21,7 +21,7 @@ module Pixnet
           return false
         else
           if user.new_record?
-            user.save(false)
+            user.save(:validate => false)
           end
 
           return user
