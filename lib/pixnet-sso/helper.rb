@@ -5,6 +5,14 @@ require 'uuid'
 module Pixnet
   module SSO
     module Helper
+      def pixnet_login_url
+        "http://www.pixnet.net/?done=#{url_encode(request.url)}"
+      end
+
+      def pixnet_logout_url
+        "http://panel.pixnet.cc/logout?done=#{url_encode(request.url)}"
+      end
+
       def pixnet_sso_scripts
         now = Time.now.to_i.to_s
         unique = Zlib.crc32(UUID.generate).to_s
