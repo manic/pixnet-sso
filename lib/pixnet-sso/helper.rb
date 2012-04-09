@@ -38,6 +38,18 @@ module Pixnet
 MSG
         return html.html_safe
       end
+
+      def pixnet_sso2_scripts
+        unique = Zlib.crc32(UUID.generate).to_s
+        now = Time.now.to_i.to_s
+        sig = Zlib.crc32("#{Pixnet::SSO::Config.sso_secret}#{unique}#{now}")
+        html = <<MSG
+        <script type="text/javascript" src="//checklogin.#{request.host}/login_name.php?key=#{Pixnet::SSO::Config.sso_key}&unique=#{unique}&timestamp=#{now}&sig=#{sig}"></script>
+        <script type="text/javascript" src="//api.pixnet.cc/api/checklogin.php?js=1&unique=#{unique}&timestamp=#{now}&type=2"></script>
+        <script type="text/javascript" src="//s.pixfs.net/js/pixnet/checklogin.min.js"></script>
+MSG
+        return html.html_safe
+      end
     end
   end
 end

@@ -11,6 +11,9 @@ module Pixnet
       mattr_accessor :openid_enabled
       @@openid_enabled = false
 
+      mattr_accessor :version
+      @@version = 1
+
       # SSO Key
       mattr_accessor :sso_key
 
