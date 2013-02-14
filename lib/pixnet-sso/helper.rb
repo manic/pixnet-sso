@@ -46,7 +46,7 @@ MSG
         html = <<MSG
         <script type="text/javascript" src="//checklogin.#{request.host}/login_name.php?key=#{Pixnet::SSO::Config.sso_key}&unique=#{unique}&timestamp=#{now}&sig=#{sig}"></script>
         <script type="text/javascript" src="//api.pixnet.cc/api/checklogin.php?js=1&unique=#{unique}&timestamp=#{now}&type=2"></script>
-        <script type="text/javascript" src="//s.pixfs.net/js/pixnet/checklogin.min.js"></script>
+        <script src="http://s.pixfs.net/js/pixnet/checklogin.js?v=20110519" type="text/javascript"></script>
 MSG
         return html.html_safe
       end
